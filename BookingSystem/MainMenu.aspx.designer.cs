@@ -14,6 +14,7 @@ namespace BookingSystem
     public partial class MainMenu
     {
 
+
         /// <summary>
         /// form1 control.
         /// </summary>

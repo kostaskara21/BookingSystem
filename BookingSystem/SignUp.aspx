@@ -19,7 +19,7 @@
             <br />  
             <!-- Label for Name-->
             <asp:Label ID="Label1" runat="server" Text="Name"></asp:Label>&nbsp&nbsp
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
             <br /><br />
 
             <!-- Label for Surname-->
