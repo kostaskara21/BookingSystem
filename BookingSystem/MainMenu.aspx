@@ -33,7 +33,7 @@
             <br /><br />
             <asp:Label ID="Label2" runat="server" Text="Label">Password</asp:Label>&nbsp&nbsp&nbsp&nbsp<asp:TextBox  ID="TextBox2" runat="server"></asp:TextBox>
                 <br /><br /><br />
-                <asp:Button ID="Button1" runat="server" Text="Sign In" />
+                <asp:Button ID="Button1" runat="server" Text="Sign In" OnClick="Button1_Click" />
                  <br /><br />
                 <asp:Label ID="Label3" runat="server" Text="Label">Dont have account? Press <a href="SignUP.aspx">Here</a> to make one </asp:Label>
         </div>
