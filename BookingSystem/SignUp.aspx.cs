@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,15 +16,31 @@ namespace BookingSystem
         
 
         }
+        public static string ByteArrayToString(byte[] ba)
+        {
+            StringBuilder hex = new StringBuilder(ba.Length);
+            foreach (byte b in ba)
+                hex.AppendFormat("{0:x2}", b);
+            return hex.ToString();
+        }
+        public String GenerateSHA256Hash(String input)
+        {
+            var sha256 = System.Security.Cryptography.SHA256.Create();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
 
-        
+            return ByteArrayToString(bytes);
+
+        }
+
+
         protected void Button1_Click(object sender, EventArgs e)
         {
+            
             var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB";
             var con = new NpgsqlConnection(cs);
             con.Open();
-            string username = TextBox3.Text;
-            string password = TextBox5.Text;
+            string username = TextBox3.Text;  
+            string password = GenerateSHA256Hash(TextBox5.Text);
             string email = TextBox4.Text;
             string fname = TextBox1.Text;
             string lname = TextBox2.Text;
