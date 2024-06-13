@@ -15,6 +15,7 @@
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
+            background-image: url('appointmentjoin.jpg');
         }
         .container {
             background-color: #fff;
