@@ -37,7 +37,7 @@
 <body> 
     <form id="form1" runat="server">
 
-        <h1 style="color:cornflowerblue;">  CREATE YOUR APPOINTMENT</h1>
+        <h1 style="color:cornflowerblue;"> CREATE YOUR APPOINTMENT</h1>
         
         <div class="center">
             <label for="appointment-id">Appointment ID:</label>

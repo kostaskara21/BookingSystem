@@ -9,18 +9,25 @@
     <link rel="stylesheet" href="Menu.css">
 </head>
 <body style=" background-image: url(background.gif);">
-    <div class="sidebar">
-        <h2>Menu</h2>
-        <ul>
-            <li><a href="MakeAppointment.aspx">Make Appointment</a></li>
-            <li><a href="JoinAppointment.aspx">Join Meeting</a></li>
-            <li><a href="">View My Appointment</a></li>
-        </ul>
-    </div>
+     <div class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+        <li><a href="MakeAppointment.aspx">Make Appointment</a></li>
+        <li><a href="JoinAppointment.aspx">Join Meeting</a></li>
+        <li><a href="">View My Appointment</a></li>
+    </ul>
+</div>
+   <div style="margin-left:25%">
 
-    <div class="content">
-        <h1>Welcome to the BookMeeting</h1>
-        <p>Select an option from the menu to get started.</p>
+       <div class="content">
+    <h1>Welcome to the BookMeeting</h1>
+    <p>Select an option from the menu to get started.</p>
+       </div>
+  
     </div>
+      
+
+     
+    
 </body>
 </html>
