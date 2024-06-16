@@ -39,28 +39,25 @@
 
         <h1 style="color:cornflowerblue;"> CREATE YOUR APPOINTMENT</h1>
         
-        <div class="center">
-            <label for="appointment-id">Appointment ID:</label>
-            <input type="text" id="appointment-id" name="appointment_id" required>
-        </div>
+       
         <div class="center">
             <label for="meeting-name">Name of the Meeting:</label>
-            <input type="text" id="meeting-name" name="meeting_name" required>
+            <asp:TextBox type="text" ID="TextBox2" runat="server"></asp:TextBox>
         </div>
         <div class="center">
             <label for="meeting-time">Time:</label>
-            <input type="time" id="meeting-time" name="meeting_time" required>
+            <asp:TextBox type="time" ID="TextBox3" runat="server"></asp:TextBox>
         </div>
         <div class="center">
             <label for="meeting-duration">Duration (in hours):</label>
-            <input type="number" id="meeting-duration" name="meeting_duration" min="0" step="0.5" required>
+            <asp:TextBox type="number" ID="TextBox4" runat="server"></asp:TextBox>
         </div>
         <div class="center">
-            <label for="meeting-date">Date:</label>
-            <input type="date" id="meeting-date" name="meeting_date" required>
+            <label for="meeting-date">Date:</label>&nbsp;
+            <asp:TextBox type="date" ID="TextBox1" runat="server"></asp:TextBox>
         </div>
         <div class="center">
-            <asp:Button ID="Button1" runat="server" Text="Submit" Width="152px" Height="31px" />
+            <asp:Button ID="Button1" runat="server" Text="Submit" Width="152px" Height="31px" OnClick="Button1_Click" />
         </div>
     </form>
 </div>

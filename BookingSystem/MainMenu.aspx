@@ -12,9 +12,7 @@
        
         
        
-        <asp:Panel    runat="server" Height="38px" style="margin-bottom: 5px;background-color:#0000FF;">
-            <asp:Image  src="obj\Pictures\BookingSymbol.png" runat="server" Height="37px" Width="54px" />
-        </asp:Panel>
+        
        
         <br /><br />
         

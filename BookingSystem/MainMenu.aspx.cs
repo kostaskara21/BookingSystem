@@ -22,7 +22,7 @@ namespace BookingSystem
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = TextBox1.Text;
