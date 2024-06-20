@@ -8,7 +8,7 @@
     <title>Menu</title>
     <link rel="stylesheet" href="Menu.css">
 </head>
-<body style=" background-image: url(background.gif);">
+<body style=" background-image: url(background.png);">
      <div class="sidebar">
     <h2>Menu</h2>
     <ul>

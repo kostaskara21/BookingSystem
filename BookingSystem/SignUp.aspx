@@ -7,7 +7,7 @@
     <title>Sign Up</title>
     
 </head>
-<body style=" background-image: url(background.gif);"; >
+<body style=" background-image: url(background.png);"; >
     
 
      <!--Form for Sign Up-->
