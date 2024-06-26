@@ -22,7 +22,7 @@ namespace BookingSystem
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = TextBox1.Text;
@@ -31,7 +31,10 @@ namespace BookingSystem
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
-            {
+            {   
+                User user = new User();
+                user.username = username;
+                Session["username"] = user.username;
                 Response.Redirect("Menu");
             }
             else

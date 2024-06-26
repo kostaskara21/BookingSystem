@@ -59,8 +59,9 @@
         <div class="center">
             <asp:Button ID="Button1" runat="server" Text="Submit" Width="152px" Height="31px" OnClick="Button1_Click" />
         </div>
-    </form>
 </div>
+    </form>
+        
     </form>
 </body>
 </html>

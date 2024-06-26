@@ -53,7 +53,7 @@
     <div class="container">
         <h1>Join Meeting(Give Meeting ID)</h1>
         <input type="text" id="meeting-id" placeholder="Enter Meeting ID">
-        <asp:Button style="background-color:green" ID="Button1" runat="server" Text="Button" Width="70px" OnClick="Button1_Click" />
+        <asp:Button style="background-color:green" ID="Button1" runat="server" Text="Join" Width="70px" OnClick="Button1_Click" />
     </div>
 
    

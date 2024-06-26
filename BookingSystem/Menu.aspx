@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="Menu.css">
 </head>
 <body style=" background-image: url(background.png);">
+     <form id="form1" runat="server">
      <div class="sidebar">
     <h2>Menu</h2>
     <ul>
@@ -20,11 +21,17 @@
    <div style="margin-left:25%">
 
        <div class="content">
-    <h1>Welcome to the BookMeeting</h1>
+    <h1>Welcome to the BookMeeting </h1>
     <p>Select an option from the menu to get started.</p>
        </div>
   
     </div>
+      
+
+     
+    
+       
+     </form>
       
 
      
