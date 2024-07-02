@@ -11,7 +11,7 @@ namespace BookingSystem
 {
 
 
-    public partial class Appointment
+    public partial class JoinedAppointment
     {
 
         /// <summary>

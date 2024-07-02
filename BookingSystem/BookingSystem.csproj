@@ -175,6 +175,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="JoinAppointment.aspx" />
+    <Content Include="JoinedAppointment.aspx" />
     <Content Include="MainMenu.aspx" />
     <Content Include="MakeAppointment.aspx" />
     <Content Include="Menu.aspx" />
@@ -282,6 +283,13 @@
     </Compile>
     <Compile Include="JoinAppointment.aspx.designer.cs">
       <DependentUpon>JoinAppointment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="JoinedAppointment.aspx.cs">
+      <DependentUpon>JoinedAppointment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JoinedAppointment.aspx.designer.cs">
+      <DependentUpon>JoinedAppointment.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainMenu.aspx.cs">
       <DependentUpon>MainMenu.aspx</DependentUpon>

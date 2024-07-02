@@ -28,11 +28,11 @@
             margin-bottom: 20px;
         }
         .container input[type="text"] {
-            width: 80%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            margin-left: 0px;
         }
         .container button {
             padding: 10px 20px;
@@ -52,7 +52,7 @@
     <form id="form1" runat="server">
     <div class="container">
         <h1>Join Meeting(Give Meeting ID)</h1>
-        <input type="text" id="meeting-id" placeholder="Enter Meeting ID">
+        &nbsp;<asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="919px"></asp:TextBox>
         <asp:Button style="background-color:green" ID="Button1" runat="server" Text="Join" Width="70px" OnClick="Button1_Click" />
     </div>
 

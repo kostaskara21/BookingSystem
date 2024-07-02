@@ -19,6 +19,24 @@ namespace BookingSystem
             var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
+            int idappointment = int.Parse(TextBox1.Text);
+            string sql = "SELECT ID FROM APPOINTMENT WHERE ID = '" + idappointment + "' ";
+            var cmd = new NpgsqlCommand(sql, con);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                Appointments appointments = new Appointments();
+                appointments.id = idappointment;
+                Session["appointments"] = appointments;
+                Response.Redirect("JoinedAppointment"); 
+            }
+            else
+            {
+                string mesg = "Invalid appointment id";
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mesg + "');", true);
+            }
+
+
         }
 
         
