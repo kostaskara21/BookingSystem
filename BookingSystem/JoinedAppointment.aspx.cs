@@ -24,13 +24,13 @@ namespace BookingSystem
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=npkmK2002;Database=AgendaDB";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointments = (Appointments)Session["appointments"];
             int idappointment = appointments.id;
             string username = (String)Session["username"];
-            string comment = TextBox1.Text;
+            string comment = TextBox3.Text;
             string time = DateTime.Now.ToString();
             string sql = "INSERT INTO COMMENT(username,comment,time,idappointment) VALUES ( '" + username + "','" + comment + "','" + time + "','" + idappointment + "')";
             var cmd = new NpgsqlCommand(sql, con);
@@ -41,7 +41,7 @@ namespace BookingSystem
 
         protected void show()
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=npkmK2002;Database=AgendaDB";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointments = (Appointments)Session["appointments"];
