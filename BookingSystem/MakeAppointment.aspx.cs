@@ -25,7 +25,7 @@ namespace BookingSystem
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            var cs = "Host=localhost;Username=postgres;Password=npkmK2002;Database=AgendaDB";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = (String)Session["username"];
@@ -64,7 +64,7 @@ namespace BookingSystem
         {
             Random r = new Random();
             int id = r.Next(100000, 999999);
-            var cs = "Host=localhost;Username=postgres;Password=npkmK2002;Database=AgendaDB";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
             var con = new NpgsqlConnection(cs);
             con.Open();
             while (true)

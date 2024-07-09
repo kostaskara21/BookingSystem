@@ -29,7 +29,12 @@
         }
         .auto-style2 {
             float: right;
-            height: 362px;
+            height: 335px;
+            width: 179px;
+            margin-left: 0px;
+        }
+        .auto-style3 {
+            width: 4px;
         }
     </style>
     </style>
@@ -50,28 +55,34 @@
             &nbsp;&nbsp;&nbsp;
                
 
-
-
-            <hr>
-            </hr>
-            
-        <div class="auto-style2">
-                    
-
-        </p>
+</p>
  
 
            
-            <table class="mytable" style="width: 22%; height: 214px; border: 1px solid black; clear: both; ">
+   
+        <div class="auto-style2">
+                    
+
+        
+
+           
+             <table class="mytable" style="width: 22%; height: 214px; border: 1px solid black; clear: both; ">
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>     
+
+
+
+        <p>
+            &nbsp;</p>
+                    </td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style1">&nbsp;</td>
                 </tr>
+                
+
+            <div style="Overflow-y:scroll; height:170px; width:250px;">
                 <tr>
                     <td>
-
-             <div style="Overflow-y:scroll; height:170px; width:250px;">
             <asp:Repeater  ID="Repeater1" runat="server">
            
             <ItemTemplate>
@@ -87,12 +98,12 @@
                      </div>
 
 
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style1">&nbsp;</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3">&nbsp;</td>
                     <td class="auto-style1">&nbsp;</td>
                 </tr>
             </table>
@@ -106,8 +117,6 @@
 
 
 
-        <p>
-            &nbsp;</p>
         <p>
             &nbsp;</p>
 
