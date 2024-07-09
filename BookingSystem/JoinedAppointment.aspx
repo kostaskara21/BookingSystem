@@ -46,6 +46,20 @@
             clear: both;
             display: table;
         }
+        .auto-style3 {
+            float: left;
+            width: 44%;
+        }
+        .auto-style5 {
+            clear: both;
+            width: 29%;
+            height: 214px;
+        }
+        .auto-style6 {
+            clear: both;
+            width: 30%;
+            height: 214px;
+        }
     </style>
 </head>
 <body style="background-image: url(bgappointment.png);">
@@ -64,8 +78,8 @@
         </p>
             
         <div class="clearfix">
-            <div class="left-table">
-                <table class="mytable" style="width: 100%; height: 214px; border: 1px solid black;">
+            <div class="auto-style3">
+                <table class="auto-style6" style="border: 1px solid black;">
                     <tr>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -93,7 +107,7 @@
                 </table>
             </div>
             <div class="right-table">
-                <table class="mytable" style="width: 100%; height: 214px; border: 1px solid black;">
+                <table class="auto-style5" style="border: 1px solid black;">
                     <tr>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>

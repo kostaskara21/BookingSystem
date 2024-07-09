@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
@@ -19,6 +20,7 @@ namespace BookingSystem
             Appointments appointments = (Appointments)Session["appointments"];
             Label3.Text = appointments.id.ToString();
             show();
+            showName();
 
         }
 
@@ -54,15 +56,25 @@ namespace BookingSystem
             Repeater1.DataSource = ds;
             Repeater1.DataBind();
             con.Close();
+            
+
+        }
+
+        protected void showName()
+
+        {
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var con = new NpgsqlConnection(cs);
             con.Open();
-            string sql2 = "SELECT NAME FROM APPOINTMENT WHERE ID='" + idappointment + "'";
-            var cmd2 = new NpgsqlCommand(sql2, con);
-            NpgsqlDataReader reader = cmd2.ExecuteReader();
+            Appointments appointments = (Appointments)Session["appointments"];
+            int idappointment = appointments.id;
+            string sql = "SELECT NAME FROM APPOINTMENT WHERE ID='" + idappointment + "'";
+            var cmd = new NpgsqlCommand(sql, con);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 Label1.Text = reader["name"].ToString();
             }
-
         }
     }
 }
