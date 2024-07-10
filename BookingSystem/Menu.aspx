@@ -15,7 +15,7 @@
     <ul>
         <li><a href="MakeAppointment.aspx">Make Appointment</a></li>
         <li><a href="JoinAppointment.aspx">Join Meeting</a></li>
-        <li><a href="">View My Appointment</a></li>
+        <li><a href="MyAppointment.aspx">View My Appointment</a></li>
     </ul>
 </div>
    <div style="margin-left:25%">

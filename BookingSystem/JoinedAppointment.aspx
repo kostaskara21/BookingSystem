@@ -19,7 +19,7 @@
         }
         .table, th, td {
             border-collapse: collapse;
-            border: 1px solid black;
+            
         }
         .mytable {
             clear: both;
@@ -57,8 +57,20 @@
         }
         .auto-style6 {
             clear: both;
-            width: 30%;
+            width: 395px;
             height: 214px;
+        }
+        .auto-style7 {
+            width: 250px;
+        }
+        .auto-style8 {
+            width: 4px;
+        }
+        .auto-style9 {
+            height: 293px;
+            overflow-y: scroll;
+            height: 170px;
+            width: 383px;
         }
     </style>
 </head>
@@ -71,37 +83,43 @@
         <p>
             <asp:Label ID="Label2" runat="server" Text="Meeting ID: "></asp:Label>
             <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label9" runat="server" Text="Date:"></asp:Label>
+            <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label11" runat="server" Text="Time:"></asp:Label>
+            <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
         </p>
 
         <p>
-            <hr></hr>
+            </hr>
         </p>
             
         <div class="clearfix">
             <div class="auto-style3">
                 <table class="auto-style6" style="border: 1px solid black;">
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style7">&nbsp;</td>
+                        <td class="auto-style8">&nbsp;</td>
                         <td class="auto-style1">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>
-                            <div class="auto-style2">
+                        <td class="auto-style7">
+                            <div class="auto-style9">
                                 <asp:Repeater ID="Repeater1" runat="server">
                                     <ItemTemplate>
                                         <asp:Label ID="Label5" runat="server" Text='<%#Eval("username")%>'></asp:Label>
                                         <asp:Label ID="Label6" runat="server" Text='<%#Eval("time")%>'></asp:Label>
                                         <br />
-                                        <div runat="server" innerText='<%#Eval("comment")%>'></div>
+                                        <div  runat="server"  innerText='<%#Eval("comment")%>' style="color:seagreen"></div>
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style7">&nbsp;</td>
+                        <td class="auto-style8">&nbsp;</td>
                         <td class="auto-style1">&nbsp;</td>
                     </tr>
                 </table>
@@ -109,20 +127,20 @@
             <div class="right-table">
                 <table class="auto-style5" style="border: 1px solid black;">
                     <tr>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:Label ID="Label13" runat="server" Text="INTERESTED USERS"></asp:Label>
+                        </td>
                         <td>&nbsp;</td>
                         <td class="auto-style1">&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
                             <div class="auto-style2">
-                                <!-- Add content or another Repeater here if needed -->
                                 <asp:Repeater ID="Repeater2" runat="server">
                                     <ItemTemplate>
                                         <asp:Label ID="Label7" runat="server" Text='<%#Eval("username")%>'></asp:Label>
-                                        <asp:Label ID="Label8" runat="server" Text='<%#Eval("time")%>'></asp:Label>
                                         <br />
-                                        <div runat="server" innerText='<%#Eval("comment")%>'></div>
+
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>

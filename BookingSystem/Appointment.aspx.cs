@@ -29,7 +29,7 @@ namespace BookingSystem
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointmentdetails = (Appointments)Session["appointment"];
@@ -45,7 +45,7 @@ namespace BookingSystem
         }
         protected void show()
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointmentdetails = (Appointments)Session["appointment"];

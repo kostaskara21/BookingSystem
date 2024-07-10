@@ -29,9 +29,9 @@
             <asp:Label  runat="server" ><font style="color:white" face = "Comic sans MS" size =" 5">Please Sign Up/Sign In</font>  </asp:Label>
             <br /><br /><br />
 
-            <asp:Label style="color:white" ID="Label1" runat="server" Text="Label">User Name</asp:Label>&nbsp&nbsp&nbsp&nbsp<asp:TextBox  ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Label style="color:white" ID="Label1" runat="server" Text="Label">Username</asp:Label>&nbsp&nbsp&nbsp&nbsp<asp:TextBox  ID="TextBox1" runat="server"></asp:TextBox>
             <br /><br />
-            <asp:Label style="color:white" ID="Label2" runat="server" Text="Label">Password</asp:Label>&nbsp&nbsp&nbsp&nbsp<asp:TextBox  ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:Label style="color:white" ID="Label2" runat="server" Text="Label">Password</asp:Label>&nbsp&nbsp&nbsp&nbsp<asp:TextBox  ID="TextBox2" runat="server" ></asp:TextBox>
                 <br /><br /><br />
                 <asp:Button ID="Button1" runat="server" Text="Sign In" OnClick="Button1_Click" />
                  <br /><br />

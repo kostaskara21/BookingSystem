@@ -64,7 +64,7 @@ namespace BookingSystem
         {
             Random r = new Random();
             int id = r.Next(100000, 999999);
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             while (true)
