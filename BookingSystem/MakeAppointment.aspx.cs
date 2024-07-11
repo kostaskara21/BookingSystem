@@ -14,8 +14,9 @@ namespace BookingSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            
+            string username = (String)Session["username"];
+            Label1.Text = username;
+
 
 
         }
@@ -25,7 +26,7 @@ namespace BookingSystem
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = (String)Session["username"];
@@ -34,7 +35,7 @@ namespace BookingSystem
             string time = TextBox3.Text;
             string duration = TextBox4.Text;
             string date = TextBox1.Text;
-            string sql = "INSERT INTO APPOINTMENT(id,time,duration,date,name) VALUES ( '"+ id +"','" + time + "','" + duration + "','" + date + "','" + name + "')";
+            string sql = "INSERT INTO APPOINTMENT(id,time,duration,date,name,creator) VALUES ( '"+ id +"','" + time + "','" + duration + "','" + date + "','" + name + "','" + username + "')";
 
             
             var cmd = new NpgsqlCommand(sql, con);

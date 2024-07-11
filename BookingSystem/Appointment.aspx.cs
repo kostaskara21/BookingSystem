@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,13 +15,17 @@ namespace BookingSystem
     public partial class Appointment : System.Web.UI.Page
     {
         DataSet ds = new DataSet();
-        NpgsqlDataAdapter sda = new NpgsqlDataAdapter();   
+        NpgsqlDataAdapter sda = new NpgsqlDataAdapter();
+        DataSet ds2 = new DataSet();
+        NpgsqlDataAdapter sda2 = new NpgsqlDataAdapter();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             Appointments appointmentdetails = (Appointments)Session["appointment"];
             Label1.Text = appointmentdetails.name;
             Label3.Text = appointmentdetails.id.ToString();
+            Label10.Text= appointmentdetails.date.ToString();
+            Label12.Text= appointmentdetails.time.ToString();
             show();
             
 
@@ -29,7 +34,7 @@ namespace BookingSystem
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda1";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointmentdetails = (Appointments)Session["appointment"];
@@ -45,7 +50,7 @@ namespace BookingSystem
         }
         protected void show()
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=Agenda1";
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointmentdetails = (Appointments)Session["appointment"];
@@ -56,13 +61,55 @@ namespace BookingSystem
             sda.SelectCommand = cmd;
             sda.Fill(ds, "comment");
             Repeater1.DataSource = ds;
-            Repeater1.DataBind();
-            
-
-            
-        
-            
+            Repeater1.DataBind();   
         }
 
+        protected void showIntersted()
+        {
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var con = new NpgsqlConnection(cs);
+            con.Open();
+            Appointments appointmentdetails = (Appointments)Session["appointment"];
+            int idappointment = appointmentdetails.id;
+            string sql = "SELECT DISTINCT users.username FROM users JOIN appointment_has_users ON users.id_user=appointment_has_users.iduser WHERE appointment_has_users.idappointment='" + idappointment + "'";
+            var cmd = new NpgsqlCommand(sql, con);
+            sda2.SelectCommand = cmd;
+            sda2.Fill(ds2, "username");
+            Repeater2.DataSource = ds2;
+            Repeater2.DataBind();
+            con.Close();
+
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var con = new NpgsqlConnection(cs);
+            Appointments appointmentdetails = (Appointments)Session["appointment"];
+            int idappointment = appointmentdetails.id;
+            con.Open();
+            string sql = "DELETE FROM appointment_has_users where idappointment='" + idappointment + "'";
+            var cmd = new NpgsqlCommand(sql, con);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            con.Close();
+            var con2 = new NpgsqlConnection(cs);
+            con2.Open();
+            string sql2 = "DELETE FROM comment where idappointment='" + idappointment + "'";
+            var cmd2 = new NpgsqlCommand(sql2, con2);
+            NpgsqlDataReader reader2 = cmd2.ExecuteReader();
+            con2.Close();
+            var con3 = new NpgsqlConnection(cs);
+            con3.Open();
+            string sql3 = "DELETE FROM appointment where id='" + idappointment + "'";
+            var cmd3 = new NpgsqlCommand(sql3, con3);
+            NpgsqlDataReader reader3 = cmd3.ExecuteReader();
+            con3.Close();
+            string mesg = "Meeting DELETED";
+            string script = $"<script>alert('{mesg}'); window.location='Menu';</script>";
+            ClientScript.RegisterStartupScript(this.GetType(), "AlertRedirect", script, false);
+
+
+        }
     }
 }

@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace BookingSystem
 {
-    public partial class JoinedAppointment : System.Web.UI.Page
+    public partial class MyAppointmentJoin : System.Web.UI.Page
     {
         DataSet ds = new DataSet();
         NpgsqlDataAdapter sda = new NpgsqlDataAdapter();
@@ -20,11 +18,12 @@ namespace BookingSystem
         NpgsqlDataAdapter sda2 = new NpgsqlDataAdapter();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Appointments appointments = (Appointments)Session["appointments"];
-            Label3.Text = appointments.id.ToString();
-            show();
-            showDetails();
-            showIntersted();
+            if (!IsPostBack)
+            {
+                showDetails();
+                show();
+                showIntersted();
+            }
 
         }
 
@@ -33,8 +32,7 @@ namespace BookingSystem
             var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
-            Appointments appointments = (Appointments)Session["appointments"];
-            int idappointment = appointments.id;
+            int idappointment = int.Parse(Request.QueryString["idappointment"]);
             string username = (String)Session["username"];
             string comment = TextBox3.Text;
             string time = DateTime.Now.ToString();
@@ -42,7 +40,31 @@ namespace BookingSystem
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             con.Close();
-            Response.Redirect("JoinedAppointment");
+            Response.Redirect("MyAppointmentJoin.aspx?idappointment="+ idappointment);
+
+        }
+
+        protected void showDetails()
+        {
+            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var con = new NpgsqlConnection(cs);
+            con.Open();
+
+            int idappointment = int.Parse(Request.QueryString["idappointment"]);
+            string sql = "SELECT name,date,time FROM APPOINTMENT WHERE ID='" + idappointment + "'";
+            var cmd = new NpgsqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("id", idappointment);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                Label3.Text = idappointment.ToString();
+                DateTime dateValue = Convert.ToDateTime(reader["date"]);
+                string formattedDate = dateValue.ToString("dd/MM/yyyy");
+                Label1.Text = reader["name"].ToString();
+                Label10.Text = formattedDate;
+                Label12.Text = reader["time"].ToString();
+            }
+            con.Close();
         }
 
         protected void show()
@@ -50,8 +72,7 @@ namespace BookingSystem
             var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
-            Appointments appointments = (Appointments)Session["appointments"];
-            int idappointment = appointments.id;
+            int idappointment = int.Parse(Request.QueryString["idappointment"]);
             string sql = "SELECT * FROM COMMENT WHERE IDAPPOINTMENT='" + idappointment + "' ORDER BY TIME DESC";
             var cmd = new NpgsqlCommand(sql, con);
             sda.SelectCommand = cmd;
@@ -59,16 +80,16 @@ namespace BookingSystem
             Repeater1.DataSource = ds;
             Repeater1.DataBind();
             con.Close();
-            
+
 
         }
+
         protected void showIntersted()
         {
             var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
-            Appointments appointments = (Appointments)Session["appointments"];
-            int idappointment = appointments.id;
+            int idappointment = int.Parse(Request.QueryString["idappointment"]);
             string sql = "SELECT DISTINCT users.username FROM users JOIN appointment_has_users ON users.id_user=appointment_has_users.iduser WHERE appointment_has_users.idappointment='" + idappointment + "'";
             var cmd = new NpgsqlCommand(sql, con);
             sda2.SelectCommand = cmd;
@@ -79,34 +100,11 @@ namespace BookingSystem
 
         }
 
-        protected void showDetails()
-
-        {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
-            var con = new NpgsqlConnection(cs);
-            con.Open();
-            Appointments appointments = (Appointments)Session["appointments"];
-            int idappointment = appointments.id;
-            string sql = "SELECT NAME,DATE,TIME FROM APPOINTMENT WHERE ID='" + idappointment + "'";
-            var cmd = new NpgsqlCommand(sql, con);
-            NpgsqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                DateTime dateValue = Convert.ToDateTime(reader["date"]);
-                string formattedDate = dateValue.ToString("dd/MM/yyyy");
-                Label1.Text = reader["name"].ToString();
-                Label10.Text = formattedDate;
-                Label12.Text= reader["time"].ToString();
-                
-            }
-        }
-
         protected void Button4_Click(object sender, EventArgs e)
         {
             var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
-            Appointments appointments = (Appointments)Session["appointments"];
-            int idappointment = appointments.id;
+            int idappointment = int.Parse(Request.QueryString["idappointment"]);
             string username = (String)Session["username"];
             con.Open();
             string sql = "SELECT FROM appointment WHERE creator = '" + username + "'AND id= '" + idappointment + "'";
@@ -114,7 +112,7 @@ namespace BookingSystem
             NpgsqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                
+
                 var con2 = new NpgsqlConnection(cs);
                 con2.Open();
                 string sql2 = "DELETE FROM appointment_has_users where idappointment='" + idappointment + "'";
@@ -140,7 +138,7 @@ namespace BookingSystem
             }
             else
             {
-                
+
                 var con5 = new NpgsqlConnection(cs);
                 con5.Open();
                 string sql5 = "DELETE FROM appointment_has_users USING users, appointment WHERE appointment_has_users.iduser = users.id_user AND appointment_has_users.idappointment = appointment.id AND users.username = '" + username + "' AND appointment.id = '" + idappointment + "'; ";
@@ -152,13 +150,6 @@ namespace BookingSystem
                 ClientScript.RegisterStartupScript(this.GetType(), "AlertRedirect", script, false);
             }
             con.Close();
-
-
-
-
-
-
-
         }
     }
 }

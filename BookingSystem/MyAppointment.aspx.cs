@@ -29,21 +29,20 @@ namespace BookingSystem
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = (String)Session["username"];
-            string sql = "SELECT DISTINCT appointment.name FROM appointment JOIN appointment_has_users ON appointment.id=appointment_has_users.idappointment JOIN users ON users.id_user = appointment_has_users.iduser WHERE users.username='nikit782'";
+            string sql = "SELECT DISTINCT appointment.id,appointment.name FROM appointment JOIN appointment_has_users ON appointment.id=appointment_has_users.idappointment JOIN users ON users.id_user = appointment_has_users.iduser WHERE users.username='"+username+"'";
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             var dataSource = new List<Item>();
             while (reader.Read())
             {
-                var names = new List<string> { (String)reader["name"] };
-                foreach (var name in names)
-                {
+                int appointmentId = (int)reader["id"];
+                string appointmentName = (String)reader["name"];
                     dataSource.Add(new Item
                     {
-                        Name = name,
-                        Url = $"MainMenu.aspx?name={Uri.EscapeDataString(name)}"
+                        Name = appointmentName,
+                        Url = $"MyAppointmentJoin.aspx?idappointment={appointmentId}"
                     });
-                }
+                
             }
                 
            

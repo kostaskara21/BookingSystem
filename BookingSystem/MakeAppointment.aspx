@@ -43,6 +43,7 @@
         <div class="center">
             <label for="meeting-name">Name of the Meeting:</label>
             <asp:TextBox type="text" ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         </div>
         <div class="center">
             <label for="meeting-time">Time:</label>
