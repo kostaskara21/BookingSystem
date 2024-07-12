@@ -25,7 +25,7 @@ namespace BookingSystem
 
         protected void showAppointment()
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = (String)Session["username"];

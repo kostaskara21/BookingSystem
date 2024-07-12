@@ -15,7 +15,7 @@ namespace BookingSystem
         protected void Page_Load(object sender, EventArgs e)
         {
             string username = (String)Session["username"];
-            Label1.Text = username;
+          
 
 
 
@@ -26,7 +26,7 @@ namespace BookingSystem
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = (String)Session["username"];
@@ -65,7 +65,7 @@ namespace BookingSystem
         {
             Random r = new Random();
             int id = r.Next(100000, 999999);
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             while (true)

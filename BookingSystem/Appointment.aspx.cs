@@ -26,6 +26,7 @@ namespace BookingSystem
             Label3.Text = appointmentdetails.id.ToString();
             Label10.Text= appointmentdetails.date.ToString();
             Label12.Text= appointmentdetails.time.ToString();
+            Label15.Text= appointmentdetails.duration.ToString();
             show();
             
 
@@ -34,7 +35,7 @@ namespace BookingSystem
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointmentdetails = (Appointments)Session["appointment"];
@@ -50,7 +51,7 @@ namespace BookingSystem
         }
         protected void show()
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointmentdetails = (Appointments)Session["appointment"];
@@ -66,7 +67,7 @@ namespace BookingSystem
 
         protected void showIntersted()
         {
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             con.Open();
             Appointments appointmentdetails = (Appointments)Session["appointment"];
@@ -84,7 +85,7 @@ namespace BookingSystem
         protected void Button4_Click(object sender, EventArgs e)
         {
             
-            var cs = "Host=localhost;Username=postgres;Password=test123;Database=AgendaDB1";
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             Appointments appointmentdetails = (Appointments)Session["appointment"];
             int idappointment = appointmentdetails.id;
@@ -110,6 +111,64 @@ namespace BookingSystem
             ClientScript.RegisterStartupScript(this.GetType(), "AlertRedirect", script, false);
 
 
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Label1.Visible = false;
+            TextBox16.Visible = true;
+            TextBox16.Text = Label1.Text;
+
+            Label10.Visible = false;
+            TextBox10.Visible = true;
+            TextBox10.Text = Label10.Text;
+
+            Label12.Visible = false;
+            TextBox12.Visible = true;
+            TextBox12.Text = Label12.Text;
+
+            Label15.Visible = false;
+            TextBox15.Visible = true;
+            TextBox15.Text = Label15.Text;
+
+            // Show the save button and hide the edit button
+            Button5.Visible = false;
+            Button6.Visible = true;
+        }
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            Appointments appointmentdetails = (Appointments)Session["appointment"];
+            int idappointment = appointmentdetails.id;
+            // Update the labels with the text from the textboxes
+            Label1.Text = TextBox16.Text;
+            Label10.Text = TextBox10.Text;
+            Label12.Text = TextBox12.Text;
+            Label15.Text = TextBox15.Text;
+            
+            var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
+            var con = new NpgsqlConnection(cs);
+            con.Open();
+            string sql = "UPDATE appointment SET Date = '"+TextBox10.Text+"', Time ='"+TextBox12.Text+"', Duration = '"+TextBox15.Text+"', Name='"+TextBox16.Text+"' WHERE id = '"+idappointment+"'";
+            var cmd = new NpgsqlCommand(sql, con);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            con.Close();
+            // Hide the textboxes and show the labels
+            TextBox16.Visible = false;
+            Label1.Visible = true;
+
+            TextBox10.Visible = false;
+            Label10.Visible = true;
+
+            TextBox12.Visible = false;
+            Label12.Visible = true;
+
+            TextBox15.Visible = false;
+            Label15.Visible = true;
+
+            // Show the edit button and hide the save button
+            Button5.Visible = true;
+            Button6.Visible = false;
         }
     }
 }
