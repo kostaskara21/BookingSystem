@@ -89,9 +89,10 @@
             </tr>
             <tr>
                 <td colspan="4" class="actions">
-                    <asp:Button ID="Button4" runat="server" Text="DELETE" OnClick="Button4_Click" />
-                    <asp:Button ID="Button5" runat="server" Text="EDIT" OnClick="Button5_Click" Visible="False" />
-                    <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="SAVE" Visible="false" />
+                    <asp:Button ID="Button4" runat="server" Text="Delete" OnClick="Button4_Click" />
+                    <asp:Button ID="Button5" runat="server" Text="Edit" OnClick="Button5_Click" Visible="False" />
+                    <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Save" Visible="false" />
+                    <asp:Button ID="Button7" runat="server" OnClick="Button7_Click" Text="Back" />
                 </td>
             </tr>
         </table>

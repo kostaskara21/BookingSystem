@@ -42,6 +42,7 @@
             <asp:TextBox ID="TextBox5" TextMode="Password" runat="server"></asp:TextBox>
             <br /><br />
             <asp:Button  ID="Button1" runat="server" Text="Sign Up" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Back" />
             <br /><br />
             </center>
 

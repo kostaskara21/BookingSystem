@@ -76,6 +76,7 @@
                 <li><a href="MakeAppointment.aspx">Make Appointment</a></li>
                 <li><a href="JoinAppointment.aspx">Join Meeting</a></li>
                 <li><a href="MyAppointment.aspx">View My Appointment</a></li>
+                <li> <asp:Button ID="Button1" runat="server" Text="Log Out" OnClick="Button1_Click" /></li>
             </ul>
         </div>
 

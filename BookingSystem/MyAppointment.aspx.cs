@@ -57,5 +57,10 @@ namespace BookingSystem
             public string Name { get; set; }
             public string Url { get; set; }
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Menu");
+        }
     }
 }

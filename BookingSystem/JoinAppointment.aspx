@@ -8,11 +8,14 @@
     <title>Join Meeting</title>
     <style>
         body {
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-position: center; 
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 120vh;
             background-color: #f0f0f0;
             margin: 0;
             background-image: url('appointmentjoin.jpg');
@@ -51,9 +54,11 @@
 <body>
     <form id="form1" runat="server">
     <div class="container">
-        <h1>Join Meeting(Give Meeting ID)</h1>
+        <h1>
+            Join Meeting(Give Meeting ID)</h1>
         &nbsp;<asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="919px"></asp:TextBox>
         <asp:Button style="background-color:green" ID="Button1" runat="server" Text="Join" Width="70px" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Text="Back" OnClick="Button2_Click" Width="70px" /> 
     </div>
 
    

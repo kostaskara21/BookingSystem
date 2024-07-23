@@ -21,6 +21,9 @@ namespace BookingSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
+ 
+
+
             Appointments appointmentdetails = (Appointments)Session["appointment"];
             Label1.Text = appointmentdetails.name;
             Label3.Text = appointmentdetails.id.ToString();
@@ -170,5 +173,14 @@ namespace BookingSystem
             Button5.Visible = true;
             Button6.Visible = false;
         }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MakeAppointment");
+        }
+
+
     }
+
+
 }

@@ -32,7 +32,9 @@
 <body>
     <form id="form1" runat="server">
         <div class="center" >
-            <asp:Label ID="Label1" runat="server" Text="MY APPOINTMENT" Font-Size="XX-Large"></asp:Label>
+            <div>
+            <asp:Label ID="Label1" runat="server" Text="MY APPOINTMENT" Font-Size="XX-Large"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Button ID="Button2" runat="server" Text="Back" Height="24px" Width="109px" OnClick="Button2_Click" />
+            </div>
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                     <div class="link-item">

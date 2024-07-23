@@ -58,6 +58,7 @@
         </div>
         <div class="center">
             <asp:Button ID="Button1" runat="server" Text="Submit" Width="152px" Height="31px" OnClick="Button1_Click" />
+            <asp:Button ID="Button2" runat="server" Height="31px" OnClick="Button2_Click" Text="Back" Width="152px" />
         </div>
 </div>
     </form>

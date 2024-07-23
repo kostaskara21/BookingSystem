@@ -17,156 +17,118 @@
         .main h1 {
             margin-bottom: 20px;
         }
-        .table, th, td {
+        .form-table {
+            margin: 0 auto;
+            width: 80%;
             border-collapse: collapse;
-            
         }
-        .mytable {
-            clear: both;
+        .form-table th, .form-table td {
+            padding: 10px;
+            text-align: left;
         }
-        .auto-style1 {
-            width: 15px;
+        .form-table td {
+            vertical-align: top;
         }
-        .auto-style2 {
-            height: 293px;
-            overflow-y: scroll;
-            height: 170px;
-            width: 250px;
+        .form-table .label {
+            width: 20%;
         }
-        .left-table {
-            float: left;
+        .form-table .input {
+            width: 30%;
+        }
+        .form-table .actions {
+            text-align: center;
+        }
+        .form-table .actions button {
+            margin: 5px;
+        }
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+        .comments-section, .interested-users-section {
             width: 45%;
         }
-        .right-table {
-            float: right;
-            width: 45%;
+        .comments-section {
+            margin-right: 5%;
         }
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-        .auto-style3 {
-            float: left;
-            width: 44%;
-        }
-        .auto-style5 {
-            clear: both;
-            width: 29%;
-            height: 214px;
-        }
-        .auto-style6 {
-            clear: both;
-            width: 395px;
-            height: 214px;
-        }
-        .auto-style7 {
-            width: 250px;
-        }
-        .auto-style8 {
-            width: 4px;
-        }
-        .auto-style9 {
-            height: 293px;
-            overflow-y: scroll;
-            height: 170px;
-            width: 383px;
+        .comment-box {
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body style="background-image: url(bgappointment.png);">
     <form id="form1" runat="server">
         <div class="main">
-            <h1>Welcome to the <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></h1>
+            <h1>Welcome to the <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                <asp:TextBox ID="TextBox16" runat="server" Visible="False"></asp:TextBox>
+            </h1>
         </div>
+        
+        <table class="form-table">
+            <tr>
+                <td class="label"><asp:Label ID="Label2" runat="server" Text="Meeting ID: "></asp:Label></td>
+                <td class="input"><asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></td>
+                <td class="label"><asp:Label ID="Label9" runat="server" Text="Date:"></asp:Label></td>
+                <td class="input">
+                    <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
+                    <asp:TextBox ID="TextBox10" runat="server" type="date" Visible="false"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><asp:Label ID="Label11" runat="server" Text="Time:"></asp:Label></td>
+                <td class="input">
+                    <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
+                    <asp:TextBox ID="TextBox12" type="time" runat="server" Visible="false"></asp:TextBox>
+                </td>
+                <td class="label"><asp:Label ID="Label14" runat="server" Text="Duration:"></asp:Label></td>
+                <td class="input">
+                    <asp:Label ID="Label15" runat="server" Text="Label"></asp:Label>
+                    <asp:TextBox ID="TextBox15" type="number" runat="server" Visible="false"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="actions">
+                    <asp:Button ID="Button4" runat="server" Text="Delete" OnClick="Button4_Click" />
+                    <asp:Button ID="Button5" runat="server" Text="Edit" OnClick="Button5_Click" Visible="False" />
+                    <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Save" Visible="false" style="height: 29px" />
+                    <asp:Button ID="Button7" runat="server" OnClick="Button7_Click" Text="Back" />
+                </td>
+            </tr>
+        </table>
 
-        <p>
-            <asp:Label ID="Label2" runat="server" Text="Meeting ID: "></asp:Label>
-            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="Label9" runat="server" Text="Date:"></asp:Label>
-            <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="Label11" runat="server" Text="Time:"></asp:Label>
-            <asp:Label ID="Label12" runat="server" Text="Label"></asp:Label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="DELETE" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button5" runat="server" Text="EDIT" Visible="False" />
-&nbsp;&nbsp;&nbsp;
-        </p>
-
-        <p>
-            </hr>
-        </p>
-            
-        <div class="clearfix">
-            <div class="auto-style3">
-                <table class="auto-style6" style="border: 1px solid black;">
-                    <tr>
-                        <td class="auto-style7">&nbsp;</td>
-                        <td class="auto-style8">&nbsp;</td>
-                        <td class="auto-style1">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style7">
-                            <div class="auto-style9">
-                                <asp:Repeater ID="Repeater1" runat="server">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label5" runat="server" Text='<%#Eval("username")%>'></asp:Label>
-                                        <asp:Label ID="Label6" runat="server" Text='<%#Eval("time")%>'></asp:Label>
-                                        <br />
-                                        <div  runat="server"  innerText='<%#Eval("comment")%>' style="color:seagreen"></div>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style7">&nbsp;</td>
-                        <td class="auto-style8">&nbsp;</td>
-                        <td class="auto-style1">&nbsp;</td>
-                    </tr>
-                </table>
+        <div class="content-wrapper">
+            <div class="comments-section">
+                <asp:Label ID="Label16" runat="server" Text="COMMENTS"></asp:Label>
+                <div style="border: 1px solid black; padding: 10px; height: 200px; overflow-y: scroll;">            
+                    <asp:Repeater ID="Repeater1" runat="server">
+                        <ItemTemplate>
+                            <asp:Label ID="Label5" runat="server" Text='<%#Eval("username")%>'></asp:Label>
+                            <asp:Label ID="Label6" runat="server" Text='<%#Eval("time")%>'></asp:Label>
+                            <br />
+                            <div runat="server" innerText='<%#Eval("comment")%>' style="color:seagreen"></div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+                <div class="comment-box">
+                <asp:Label ID="Label8" runat="server" Text="Comment:"></asp:Label>
+                    <asp:TextBox ID="TextBox3" runat="server" Height="38px" Width="144px"></asp:TextBox>
+                    <asp:Button ID="Button3" runat="server" OnClick="Button1_Click" Text="Submit" />
+                </div>
             </div>
-            <div class="right-table">
-                <table class="auto-style5" style="border: 1px solid black;">
-                    <tr>
-                        <td>
-                            <asp:Label ID="Label13" runat="server" Text="INTERESTED USERS"></asp:Label>
-                        </td>
-                        <td>&nbsp;</td>
-                        <td class="auto-style1">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="auto-style2">
-                                <asp:Repeater ID="Repeater2" runat="server">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label7" runat="server" Text='<%#Eval("username")%>'></asp:Label>
-                                        <br />
-
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td class="auto-style1">&nbsp;</td>
-                    </tr>
-                </table>
+            <div class="interested-users-section">
+                <asp:Label ID="Label13" runat="server" Text="INTERESTED USERS"></asp:Label>
+                <div style="border: 1px solid black; padding: 10px; height: 200px; overflow-y: scroll;">
+                    <asp:Repeater ID="Repeater2" runat="server">
+                        <ItemTemplate>
+                            <asp:Label ID="Label7" runat="server" Text='<%#Eval("username")%>'></asp:Label>
+                            <br />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
             </div>
         </div>
-
-        <asp:Label ID="Label8" runat="server" Text="Comment:"></asp:Label>
-        <br />
-        <asp:TextBox ID="TextBox3" runat="server" Height="38px" Width="144px"></asp:TextBox>
-        <asp:Button ID="Button3" runat="server" OnClick="Button1_Click" Text="Submit" />
-
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
     </form>
 </body>
 </html>

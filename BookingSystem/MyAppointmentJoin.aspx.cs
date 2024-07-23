@@ -108,14 +108,31 @@ namespace BookingSystem
             var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
             var con = new NpgsqlConnection(cs);
             int idappointment = int.Parse(Request.QueryString["idappointment"]);
+            string nameappointment = Label1.Text;
             string username = (String)Session["username"];
+            var con6 = new NpgsqlConnection(cs);
+            con6.Open();
+            string sql6 = "INSERT INTO NOTIFICATIONS(iduser,idappointment,message) SELECT iduser ,'" + idappointment + "','Has been deleted' FROM appointment_has_users WHERE appointment_has_users.idappointment='" + idappointment + "'";
+            var cmd6 = new NpgsqlCommand(sql6, con6);
+            NpgsqlDataReader reader6 = cmd6.ExecuteReader();
+            if (reader6.Read())
+            {
+                string mesg = "douleuei";
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mesg + "');", true);
+            }
+            else
+            {
+                string mesg = "den douleuei";
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mesg + "');", true);
+            }
+            con6.Close();
             con.Open();
             string sql = "SELECT FROM appointment WHERE creator = '" + username + "'AND id= '" + idappointment + "'";
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-
+               
                 var con2 = new NpgsqlConnection(cs);
                 con2.Open();
                 string sql2 = "DELETE FROM appointment_has_users where idappointment='" + idappointment + "'";
@@ -234,6 +251,11 @@ namespace BookingSystem
             // Show the edit button and hide the save button
             Button5.Visible = true;
             Button6.Visible = false;
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MyAppointment");
         }
     }
 }
