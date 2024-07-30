@@ -100,6 +100,7 @@ namespace BookingSystem
                 Label12.Text= reader["time"].ToString();
                 
             }
+            con.Close();    
         }
         protected void creatorver()
         {
@@ -119,6 +120,7 @@ namespace BookingSystem
                 Button5.Visible = true;
 
             }
+            con.Close();
         }
 
             protected void Button4_Click(object sender, EventArgs e)
@@ -135,7 +137,20 @@ namespace BookingSystem
             NpgsqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-         
+                var con6 = new NpgsqlConnection(cs);
+                con6.Open();
+                string sql6 = "INSERT INTO NOTIFICATIONS(iduser,appointment,message) SELECT iduser ,'" + nameappointment + "','Has been deleted' FROM appointment_has_users WHERE appointment_has_users.idappointment='" + idappointment + "'";
+                using (var cmd6 = new NpgsqlCommand(sql6, con6))
+                {
+                    // Adding parameters to prevent SQL injection and properly handle the input values
+                    cmd6.Parameters.AddWithValue("appointment", nameappointment);
+
+                    // ExecuteNonQuery is used for executing commands that do not return any results
+                    int rowsAffected = cmd6.ExecuteNonQuery();
+                    Console.WriteLine($"{rowsAffected} rows were inserted.");
+                }
+
+                con6.Close();
                 var con2 = new NpgsqlConnection(cs);
                 con2.Open();
                 string sql2 = "DELETE FROM appointment_has_users where idappointment='" + idappointment + "'";
@@ -223,6 +238,21 @@ namespace BookingSystem
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             con.Close();
+            string nameappointment = appointments.name;
+            var con6 = new NpgsqlConnection(cs);
+            con6.Open();
+            string sql6 = "INSERT INTO NOTIFICATIONS(iduser,appointment,message) SELECT iduser ,'" + nameappointment + "','Has been edited' FROM appointment_has_users WHERE appointment_has_users.idappointment='" + idappointment + "'";
+            using (var cmd6 = new NpgsqlCommand(sql6, con6))
+            {
+                // Adding parameters to prevent SQL injection and properly handle the input values
+                cmd6.Parameters.AddWithValue("appointment", nameappointment);
+
+                // ExecuteNonQuery is used for executing commands that do not return any results
+                int rowsAffected = cmd6.ExecuteNonQuery();
+                Console.WriteLine($"{rowsAffected} rows were inserted.");
+            }
+
+            con6.Close();
             // Hide the textboxes and show the labels
             TextBox16.Visible = false;
             Label1.Visible = true;

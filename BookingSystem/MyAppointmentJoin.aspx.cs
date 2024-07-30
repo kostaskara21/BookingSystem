@@ -110,29 +110,28 @@ namespace BookingSystem
             int idappointment = int.Parse(Request.QueryString["idappointment"]);
             string nameappointment = Label1.Text;
             string username = (String)Session["username"];
-            var con6 = new NpgsqlConnection(cs);
-            con6.Open();
-            string sql6 = "INSERT INTO NOTIFICATIONS(iduser,idappointment,message) SELECT iduser ,'" + idappointment + "','Has been deleted' FROM appointment_has_users WHERE appointment_has_users.idappointment='" + idappointment + "'";
-            var cmd6 = new NpgsqlCommand(sql6, con6);
-            NpgsqlDataReader reader6 = cmd6.ExecuteReader();
-            if (reader6.Read())
-            {
-                string mesg = "douleuei";
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mesg + "');", true);
-            }
-            else
-            {
-                string mesg = "den douleuei";
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mesg + "');", true);
-            }
-            con6.Close();
+           
             con.Open();
             string sql = "SELECT FROM appointment WHERE creator = '" + username + "'AND id= '" + idappointment + "'";
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-               
+                var con6 = new NpgsqlConnection(cs);
+                con6.Open();
+                string sql6 = "INSERT INTO NOTIFICATIONS(iduser,appointment,message) SELECT iduser ,'" + nameappointment + "','Has been deleted' FROM appointment_has_users WHERE appointment_has_users.idappointment='" + idappointment + "'";
+                using (var cmd6 = new NpgsqlCommand(sql6, con6))
+                {
+                    // Adding parameters to prevent SQL injection and properly handle the input values
+                    cmd6.Parameters.AddWithValue("appointment", nameappointment);
+
+                    // ExecuteNonQuery is used for executing commands that do not return any results
+                    int rowsAffected = cmd6.ExecuteNonQuery();
+                    Console.WriteLine($"{rowsAffected} rows were inserted.");
+                }
+
+                con6.Close();
+
                 var con2 = new NpgsqlConnection(cs);
                 con2.Open();
                 string sql2 = "DELETE FROM appointment_has_users where idappointment='" + idappointment + "'";
@@ -229,13 +228,35 @@ namespace BookingSystem
             Label15.Text = TextBox15.Text;
 
             var cs = "Host=localhost;Username=postgres;Password=2002;Database=AgendaDB1";
+
             var con = new NpgsqlConnection(cs);
             con.Open();
             string sql = "UPDATE appointment SET Date = '" + TextBox10.Text + "', Time ='" + TextBox12.Text + "', Duration = '" + TextBox15.Text + "',Name='"+TextBox16.Text+"' WHERE id = '" + idappointment + "'";
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             con.Close();
-            // Hide the textboxes and show the labels
+            string nameappointment = Label1.Text;
+            var con6 = new NpgsqlConnection(cs);
+            con6.Open();
+            string sql6 = "INSERT INTO NOTIFICATIONS(iduser,appointment,message) SELECT iduser ,'" + nameappointment + "','Has been edited' FROM appointment_has_users WHERE appointment_has_users.idappointment='" + idappointment + "'";
+            using (var cmd6 = new NpgsqlCommand(sql6, con6))
+            {
+                // Adding parameters to prevent SQL injection and properly handle the input values
+                cmd6.Parameters.AddWithValue("appointment", nameappointment);
+
+                // ExecuteNonQuery is used for executing commands that do not return any results
+                int rowsAffected = cmd6.ExecuteNonQuery();
+                Console.WriteLine($"{rowsAffected} rows were inserted.");
+            }
+
+            con6.Close();
+
+
+
+
+
+
+    
             TextBox16.Visible = false;
             Label1.Visible = true;
 

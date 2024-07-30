@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
 using System.Text;
+using Microsoft.Ajax.Utilities;
 
 
 namespace BookingSystem
@@ -35,6 +36,7 @@ namespace BookingSystem
                 User user = new User();
                 user.username = username;
                 Session["username"] = user.username;
+                
                 Response.Redirect("Menu");
             }
             else

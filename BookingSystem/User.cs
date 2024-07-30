@@ -8,5 +8,6 @@ namespace BookingSystem
     public class User
     {
         public string username { get; set; } 
+        public int id { get; set; }
     }
 }
