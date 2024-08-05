@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
@@ -29,7 +30,7 @@ namespace BookingSystem
             var con = new NpgsqlConnection(cs);
             con.Open();
             string username = (String)Session["username"];
-            string sql = "SELECT DISTINCT appointment.id,appointment.name FROM appointment JOIN appointment_has_users ON appointment.id=appointment_has_users.idappointment JOIN users ON users.id_user = appointment_has_users.iduser WHERE users.username='"+username+"'";
+            string sql = "SELECT DISTINCT appointment.id,appointment.name,appointment.date,appointment.time FROM appointment JOIN appointment_has_users ON appointment.id=appointment_has_users.idappointment JOIN users ON users.id_user = appointment_has_users.iduser WHERE users.username='"+username+"' ORDER BY DATE ";
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             var dataSource = new List<Item>();
@@ -37,10 +38,16 @@ namespace BookingSystem
             {
                 int appointmentId = (int)reader["id"];
                 string appointmentName = (String)reader["name"];
-                    dataSource.Add(new Item
+                DateTime dateValue = Convert.ToDateTime(reader["date"]);
+                string formattedDate = dateValue.ToString("dd/MM/yyyy");
+                string dateapp = formattedDate;
+                string timeapp = reader["time"].ToString();
+                dataSource.Add(new Item
                     {
                         Name = appointmentName,
-                        Url = $"MyAppointmentJoin.aspx?idappointment={appointmentId}"
+                        Url = $"MyAppointmentJoin.aspx?idappointment={appointmentId}",
+                        date = dateapp,
+                        time = timeapp
                     });
                 
             }
@@ -56,6 +63,8 @@ namespace BookingSystem
         {
             public string Name { get; set; }
             public string Url { get; set; }
+            public string date { get; set; }
+            public string time { get; set; }
         }
 
         protected void Button2_Click(object sender, EventArgs e)
