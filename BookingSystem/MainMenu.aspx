@@ -19,7 +19,7 @@
         
        <center>
            <div>
-              <font style="color:white" face = "Comic sans MS" size =" 5">Welcome To BookMeeting</font>
+              <font style="color:white" face = "Comic sans MS" size =" 5">Welcome To DuckAgenda</font>
            </div>
            
         <div>
@@ -35,7 +35,7 @@
                 <br /><br /><br />
                 <asp:Button ID="Button1" runat="server" Text="Sign In" OnClick="Button1_Click" />
                  <br /><br />
-                <asp:Label style="color:white" ID="Label3" runat="server" Text="Label">Dont have account? Press <a href="SignUP.aspx">Here</a> to make one </asp:Label>
+                <asp:Label style="color:white" ID="Label3" runat="server" Text="Label">Don't have account? Press <a href="SignUP.aspx">Here</a> to make one </asp:Label>
         </div>
        </center>
 

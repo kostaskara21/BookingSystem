@@ -88,7 +88,7 @@ namespace BookingSystem
             con.Open();
             Appointments appointments = (Appointments)Session["appointments"];
             int idappointment = appointments.id;
-            string sql = "SELECT NAME,DATE,TIME FROM APPOINTMENT WHERE ID='" + idappointment + "'";
+            string sql = "SELECT NAME,DATE,TIME,DURATION FROM APPOINTMENT WHERE ID='" + idappointment + "'";
             var cmd = new NpgsqlCommand(sql, con);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -97,7 +97,8 @@ namespace BookingSystem
                 string formattedDate = dateValue.ToString("dd/MM/yyyy");
                 Label1.Text = reader["name"].ToString();
                 Label10.Text = formattedDate;
-                Label12.Text= reader["time"].ToString();
+                Label12.Text = reader["time"].ToString();
+                Label15.Text = reader["duration"].ToString();
                 
             }
             con.Close();    
